@@ -14,6 +14,7 @@ phases:
   build:
     commands:
       - echo "[+] Installing dependencies...."
+      - mkdir dist
       - pip install -r requirements.txt -t dist/
       - cp *.py dist/
       - cp requirements.txt dist/
