@@ -18,7 +18,7 @@ phases:
       #- pip install -r requirements.txt -t dist/
       - cp *.py dist/
       - cp requirements.txt dist/
-      - cp -R templates/* dist/templates
+      - cp -R templates dist/
       - echo "Starting  packaging `date` in `pwd`"
       - zip -r dist.zip dist/*
   post_build:
@@ -27,7 +27,7 @@ phases:
 
 artifacts:
   files:
-    - dist/**/*
+    - dist.zip
   discard-paths: yes
 
 cache:
