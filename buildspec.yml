@@ -21,6 +21,7 @@ phases:
       - cp -R templates dist/
       - echo "Starting  packaging `date` in `pwd`"
       - zip -r dist.zip dist/*
+      - ls -l dist
   post_build:
     commands:
       - echo "Packaging completed on `date`"
