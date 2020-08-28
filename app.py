@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import random
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 # list of cat images
 image_urls_map = {

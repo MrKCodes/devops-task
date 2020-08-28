@@ -20,7 +20,7 @@ phases:
       - cp requirements.txt dist/
       - cp -R templates dist/
       - echo "Starting  packaging `date` in `pwd`"
-      - zip -r dist.zip dist
+      - zip -r dist.zip dist/*
   post_build:
     commands:
       - echo "Packaging completed on `date`"
