@@ -9,6 +9,9 @@ import org.jenkinsci.plugins.workflow.cps.CpsScript
 
 node {
 
+    stage('Git Checkout'){
+        git credentialsId: 'Github_kartikeya', url: 'https://github.com/kartikeyachauhan/devops-task.git'
+    }
     stage('Build Stage'){
         powershell label: '', script: 'Compress-Archive -LiteralPath templates, requirements.txt, application.py -CompressionLevel Optimal -DestinationPath application.zip'
     }
