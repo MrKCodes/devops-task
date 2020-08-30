@@ -13,7 +13,7 @@ node {
         git credentialsId: 'Github_kartikeya', url: 'https://github.com/kartikeyachauhan/devops-task.git'
     }
     stage('Build Docker Image'){
-        sh 'docker build -t smallcase-demo chauhankartikeya/smallcase-demo:latest .'
+        sh 'docker build -t chauhankartikeya/smallcase-demo:latest .'
     }
     stage('Build Stage'){
         sh '''
