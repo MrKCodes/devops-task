@@ -17,6 +17,7 @@ node {
     }
     stage('Build Stage'){
         sh '''
+            mkdir dist
             cp *.py dist/
             cp requirements.txt dist/
             cp -R templates dist/
