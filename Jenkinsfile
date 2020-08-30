@@ -53,6 +53,9 @@ pipeline {
         }
         
         stage('Deploying to target'){
+            steps{
+                echo 'Deploying to AWS EC2 instance'
+            }
 
         }
         stage('Push to Docker Hub') {
