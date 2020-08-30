@@ -36,16 +36,20 @@ pipeline {
             }
         }
         stage('Build Stage'){
-            sh '''
-                mkdir dist
-                cp *.py dist/
-                cp requirements.txt dist/
-                cp -R templates dist/
-                echo "Starting  packaging `date` in `pwd`"
-                zip -r dist.zip dist/* '''
+            steps {
+                sh '''
+                    mkdir dist
+                    cp *.py dist/
+                    cp requirements.txt dist/
+                    cp -R templates dist/
+                    echo "Starting  packaging `date` in `pwd`"
+                    zip -r dist.zip dist/* '''
+            }
         }
         stage('Archiving Artifact'){
-            archiveArtifacts artifacts: '*.zip'
+            steps {
+                archiveArtifacts artifacts: '*.zip'
+            }
         }
         
         stage('Deploying to target'){
