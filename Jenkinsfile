@@ -13,10 +13,15 @@ node {
         git credentialsId: 'Github_kartikeya', url: 'https://github.com/kartikeyachauhan/devops-task.git'
     }
     stage('Build Docker Image'){
-        powershell label: '', script: 'docker build'
+        sh 'docker build'
     }
     stage('Build Stage'){
-        powershell label: '', script: 'Compress-Archive -LiteralPath templates, requirements.txt, application.py -CompressionLevel Optimal -DestinationPath application.zip'
+        sh '''
+            cp *.py dist/
+            cp requirements.txt dist/
+            cp -R templates dist/
+            echo "Starting  packaging `date` in `pwd`"
+            zip -r dist.zip dist/* '''
     }
     stage('Archiving Artifact'){
         archiveArtifacts artifacts: '*.zip'
@@ -25,7 +30,7 @@ node {
 
     }
     stage('Docker Registry'){
-
+        sh 'docker push chauhankartikeya/smallcase-demo:latest'
     }
 
 }
