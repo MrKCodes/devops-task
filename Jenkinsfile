@@ -16,10 +16,12 @@ pipeline {
     agent any
     stages {
         stage('Clean Workspace'){
-            sh '''
-                rm -rf dist
-                rm dist.zip
-                '''
+             steps {
+                sh '''
+                    rm -rf dist
+                    rm dist.zip
+                    '''
+             }
         }
         stage('Cloning our Git') {
             steps {
