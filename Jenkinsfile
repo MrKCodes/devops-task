@@ -20,8 +20,9 @@ pipeline {
         stage('Clean Workspace'){
              steps {
                 sh '''
-                    rm -rf dist
-                    rm dist.zip
+                if [ -d dist ] ; then
+                     rm -rf dist
+                fi
                     '''
              }
         }
