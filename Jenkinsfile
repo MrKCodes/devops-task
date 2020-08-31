@@ -59,7 +59,7 @@ pipeline {
             }
 
         }
-        stage('Push Artifact/Docker image') {
+        stage('Push Artifact/ Docker image') {
             steps {
                 parallel(
                 'Upload to S3 Bucket': {
