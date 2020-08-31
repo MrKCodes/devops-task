@@ -7,6 +7,8 @@ import groovy.transform.Field
 
 import org.jenkinsci.plugins.workflow.cps.CpsScript
 
+def build = "dist" + BUILD_NUMBER + '.zip'
+ 
 pipeline {
     environment {
         registry = "chauhankartikeya/smallcase-demo"
@@ -43,7 +45,7 @@ pipeline {
                     cp requirements.txt dist/
                     cp -R templates dist/
                     echo "Starting  packaging `date` in `pwd`"
-                    zip -r "dist$BUILD_NUMBER.zip" dist/* """
+                    zip -r "$build" dist/* """
             }
         }
         stage('Archiving Artifact'){
