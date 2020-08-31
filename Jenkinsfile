@@ -37,36 +37,56 @@ pipeline {
         }
         stage('Build Stage'){
             steps {
-                sh '''
+                sh """
                     mkdir dist
                     cp *.py dist/
                     cp requirements.txt dist/
                     cp -R templates dist/
                     echo "Starting  packaging `date` in `pwd`"
-                    zip -r dist.zip dist/* '''
+                    zip -r "dist$BUILD_NUMBER.zip" dist/* """
             }
         }
         stage('Archiving Artifact'){
             steps {
-                archiveArtifacts artifacts: '*.zip'
+                archiveArtifacts artifacts: '*.zip', fingerprint: true
             }
         }
         
         stage('Deploying to target'){
             steps{
                 echo 'Deploying to AWS EC2 instance'
+                
             }
 
         }
-        stage('Push to Docker Hub') {
-            steps{
-                script {
-                    docker.withRegistry('', registryCredential) {
-                        dockerImage.push()
+        stage('Push Artifact/Docker image') {
+            steps {
+                parallel(
+                'Upload to S3 Bucket': {
+                    s3Upload acl: 'Private', bucket: 'smallcase-artifacts', cacheControl: '',
+                    excludePathPattern: '', file: 'dist$BUILD_NUMBER.zip', includePathPattern: '',
+                    metadatas: [''], path: 's3://smallcase-artifacts/develop/$BUILD_NUMBER',
+                    redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: '.'
+                },
+                'Push to Docker Hub': {
+                    script {
+                        docker.withRegistry('', registryCredential) {
+                            dockerImage.push()
                     }
                 }
+                }
+                )
             }
-        }
+            }
+        // stage('Push to Docker Hub') {
+        //     steps{
+        //         script {
+        //             docker.withRegistry('', registryCredential) {
+        //                 dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
         stage('Cleaning Images') {
             steps{
                 sh "docker rmi $registry:$BUILD_NUMBER"
