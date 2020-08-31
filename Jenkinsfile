@@ -63,10 +63,8 @@ pipeline {
             steps {
                 parallel(
                 'Upload to S3 Bucket': {
-                    s3Upload acl: 'Private', bucket: 'smallcase-artifacts', cacheControl: '',
-                    excludePathPattern: '', file: 'dist$BUILD_NUMBER.zip', includePathPattern: '',
-                    metadatas: [''], path: 's3://smallcase-artifacts/develop/$BUILD_NUMBER',
-                    redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: '.'
+                    s3Upload(file:"dist$BUILD_NUMBER.zip", bucket:'smallcase-artifacts', path:"s3://smallcase-artifacts/develop/dist$BUILD_NUMBER.zip")
+                    
                 },
                 'Push to Docker Hub': {
                     script {
