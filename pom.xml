@@ -9,15 +9,16 @@
   <version>1.0-SNAPSHOT</version>
 
 
+
    <distributionManagement>
         <snapshotRepository>
             <id>smallcase-artifacts</id>
-            <file>dist.zip</file>
+            <artifacts>dist.zip</artifacts>
             <url>s3://smallcase-artifacts/snapshot</url>
         </snapshotRepository>
         <repository>
             <id>smallcase-artifacts.artifacts</id>
-            <file>dist.zip</file>
+            <artifacts>dist.zip</artifacts>
             <url>s3://smallcase-artifacts//release</url>
         </repository>
     </distributionManagement>
