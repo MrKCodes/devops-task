@@ -59,7 +59,7 @@ pipeline {
             steps{
                 echo 'Deploying to AWS EC2 instance'
                 script {
-                    build job: 'smallcase-cicd-pipeline-deploy'
+                    build 'smallcase-cicd-pipeline-deploy'
                 }               
             }
 
