@@ -46,7 +46,9 @@ pipeline {
                     cp requirements.txt dist/
                     cp -R templates dist/
                     echo "Starting  packaging `date` in `pwd`"
-                    zip -r "$build" dist/* """
+                    zip -r "$build" templates/ 
+                    zip -u "$build" requirements.txt
+                    zip -u "$build" application.py"""
             }
         }
         stage('Archiving Artifact'){
