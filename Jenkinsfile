@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Cloning our Git') {
             steps {
-                git credentialsId: 'Github_kartikeya', url: 'https://github.com/kartikeyachauhan/devops-task.git'
+                git branch: 'develop', credentialsId: 'Github_kartikeya', url: 'https://github.com/kartikeyachauhan/devops-task.git'
             }
         }
         stage('Building Docker image') {
