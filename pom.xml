@@ -10,18 +10,18 @@
 
 
 
-   <distributionManagement>
+   <!-- <distributionManagement>
         <snapshotRepository>
             <id>smallcase-artifacts</id>
-            <artifacts>dist.zip</artifacts>
+            
             <url>s3://smallcase-artifacts/snapshot</url>
         </snapshotRepository>
         <repository>
             <id>smallcase-artifacts.artifacts</id>
-            <artifacts>dist.zip</artifacts>
+            
             <url>s3://smallcase-artifacts/release</url>
         </repository>
-    </distributionManagement>
+    </distributionManagement> -->
 
    <build>
     <plugins>
