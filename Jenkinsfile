@@ -58,8 +58,9 @@ pipeline {
         stage('Deploying to target'){
             steps{
                 echo 'Deploying to AWS EC2 instance'
-                build job: 'smallcase-cicd-pipeline-deploy'
-                
+                script {
+                    build job: 'smallcase-cicd-pipeline-deploy'
+                }               
             }
 
         }
