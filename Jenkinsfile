@@ -58,6 +58,7 @@ pipeline {
         stage('Deploying to target'){
             steps{
                 echo 'Deploying to AWS EC2 instance'
+                build 'smallcase-cicd-pipeline-deploy'
                 
             }
 
@@ -66,9 +67,7 @@ pipeline {
             steps {
                 parallel(
                 'Upload to S3 Bucket': {
-                    echo "S3 Bucket"
-                    sh "mvn s3-upload"
-                    // s3Upload file:"dist$BUILD_NUMBER.zip", bucket:'smallcase-artifacts', path:"s3://smallcase-artifacts/develop/dist$BUILD_NUMBER.zip"
+                    echo 'Pushing to S3 Bucket'
                     
                 },
                 'Push to Docker Hub': {
