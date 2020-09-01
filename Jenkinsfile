@@ -23,6 +23,7 @@ pipeline {
                 if [ -d dist ] ; then
                      rm -rf dist
                 fi
+                rm -rf *
                     '''
              }
         }
